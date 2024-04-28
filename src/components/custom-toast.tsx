@@ -2,7 +2,7 @@
 
 import { toast } from 'sonner';
 import { Button } from './ui/button';
-import { ButtonCloseIcon } from './button-close-icon';
+import { ButtonCloseIcon } from './shared/button-close-icon';
 
 export default function CustomToast() {
   return (

@@ -1,8 +1,8 @@
-import { data } from '@/static-app-data/data';
+import { AppData } from '@/static/app-metadata';
 
 import type { MetadataRoute } from 'next';
 
-const { name, short_name, description } = data;
+const { name, short_name, description } = AppData;
 
 export default function manifest(): MetadataRoute.Manifest {
   return {

@@ -2,10 +2,17 @@
 
 import { XIcon as CloseIcon } from 'lucide-react';
 import { toast } from 'sonner';
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 
 type ButtonCloseProps = { toastId: string };
 
+/**
+ * Can be used only for Toast Component.
+ * Renders a button with a close icon that dismisses a toast.
+ *
+ * @param {ButtonCloseProps} toastId - The ID of the toast to be dismissed.
+ * @return {JSX.Element} The rendered button component.
+ */
 export function ButtonCloseIcon({ toastId }: ButtonCloseProps) {
   return (
     <Button
