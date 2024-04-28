@@ -1,19 +1,10 @@
 'use client';
 
 import { toast } from 'sonner';
-import { Button } from '@/components/ui/button';
-import { ButtonCloseIcon } from '@/components/button-close-icon';
-import { createClient } from '@supabase/supabase-js';
-export default function Home() {
-  // const supabase = createClient(
-  //   process.env.NEXT_PUBLIC_SUPABASE_URL,
-  //   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-  // );
+import { Button } from './ui/button';
+import { ButtonCloseIcon } from './button-close-icon';
 
-  // const { data, error } = await supabase.from('countries').select();
-
-  // console.log(data, error);
-
+export default function CustomToast() {
   return (
     <div className='flex justify-evenly'>
       <Button

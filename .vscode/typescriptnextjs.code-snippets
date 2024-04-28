@@ -1,0 +1,49 @@
+{
+  "Console Log": {
+    "prefix": "cl",
+    "body": ["console.log($1);"],
+  },
+  "Import react": {
+    "prefix": "imr",
+    "body": ["import * as React from 'react';"],
+  },
+  "React useState": {
+    "prefix": "us",
+    "body": ["const [$1, set$2] = useState($3);"],
+  },
+  "React useEffect": {
+    "prefix": "ue",
+    "body": ["useEffect(() => {", "  $1", "}, [$2]);"],
+  },
+  "React useCallback": {
+    "prefix": "ucb",
+    "body": ["useCallback(() => {", "  $1", "}, [$2]);"],
+  },
+  "React useMemo": {
+    "prefix": "um",
+    "body": ["useMemo(() => {", "  $1", "}, [$2]);"],
+  },
+  "Next Function Component": {
+    "prefix": "nfce",
+    "body": ["export default function $1() {", "return <div>$1</div>", "}", ""],
+  },
+  "Async Next Function Component": {
+    "prefix": "anfce",
+    "body": [
+      "export default async function $1() {",
+      "return <div>$1</div>",
+      "}",
+      "",
+    ],
+  },
+  "Next Metadata Component": {
+    "prefix": "nfcm",
+    "body": [
+      "import type { Metadata } from 'next';",
+      "",
+      "export const metadata: Metadata = {",
+      "title: '$1',",
+      "};",
+    ],
+  },
+}
