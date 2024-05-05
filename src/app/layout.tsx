@@ -33,7 +33,7 @@ export default function RootLayout({ children }: Readonly<Children>) {
     <html lang='en' suppressHydrationWarning>
       <body
         className={cn(
-          'min-h-screen bg-background bg-slate-50 font-sans text-slate-950 antialiased dark:bg-slate-900 dark:text-slate-50',
+          'text-color min-h-screen bg-background font-sans antialiased',
           fontSans.variable,
         )}>
         <ThemeProvider

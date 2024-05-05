@@ -8,9 +8,10 @@ const nextConfig = {
   //         }
   //       : false,
   // },
-  experimental: {
-    ppr: true,
-  },
+  reactStrictMode: true,
+  // experimental: {
+  //   ppr: true,
+  // },
 };
 
 export default nextConfig;

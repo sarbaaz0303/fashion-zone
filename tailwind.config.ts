@@ -23,6 +23,9 @@ const config = {
         sans: ['var(--font-sans)', 'Arial', 'Verdana', ...fontFamily.sans],
       },
       colors: {
+        sky: 'hsl(var(--sky))',
+        color: 'hsl(var(--text-color))',
+        logo: 'hsl(var(--logo-color))',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
