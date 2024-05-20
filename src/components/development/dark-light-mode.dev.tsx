@@ -11,9 +11,9 @@ enum Theme {
 }
 
 export const DarkLightModeToggle = () => {
-  if (process.env.NODE_ENV === 'production') return null;
-
   const { theme, setTheme } = useTheme();
+
+  if (process.env.NODE_ENV === 'production') return null;
 
   const toggleTheme = () => {
     theme == Theme.dark ? setTheme(Theme.light) : setTheme(Theme.dark);
