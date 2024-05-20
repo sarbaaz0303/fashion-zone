@@ -1,14 +1,15 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { z } from 'zod';
 import { SubmitErrorHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
 
-import { AppData } from '@/static/app-metadata';
-import { AuthFormSchema } from '@/lib/types';
-import { sleep } from '@/lib/utils';
+import { createClient } from '@/lib/supabase/client';
 import {
   Form,
   FormControl,
@@ -18,36 +19,104 @@ import {
   FormMessage,
 } from './ui/form';
 import { Input } from './ui/input';
-import { Loader2, Mail } from 'lucide-react';
 import { InputPassword } from './ui/input-password';
 import { Button } from './ui/button';
-import Link from 'next/link';
-import { createClient } from '@/lib/supabase/client';
+import { ButtonCloseIcon } from './shared/button-close-icon';
+import ForgotPassword from './old';
+
+import { Loader2 } from 'lucide-react';
+import { AppData } from '@/static/app-metadata';
+import { AuthFormSchema, AuthType } from '@/lib/types';
 
 const { short_name } = AppData;
 
-export default function AuthForm({ type }: { type: string }) {
+export default function AuthForm({ type }: { type: AuthType }) {
+  const router = useRouter();
+
   const [isLoading, setIsLoading] = useState(false);
   const [isOAuthLoading, setIsOAuthLoading] = useState(false);
 
   const formSchema = AuthFormSchema(type);
+  const supabase = createClient();
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: 'wonove1034@fesgrid.com',
+      password: '12345678',
     },
   });
 
+  const userEmail = form.watch('email');
+
   // 2. Handle the form submission.
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+  const onSubmit = async (formData: z.infer<typeof formSchema>) => {
     setIsLoading(true);
 
     try {
-      await sleep(2000);
-      console.log(data);
+      if (type === AuthType.SignIn) {
+        // Sign In
+        const response = await fetch('/api/auth/sign-in', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password,
+          }),
+        });
+
+        const jsonResponse = await response.json();
+
+        if (jsonResponse.error?.code) {
+          const uuid = crypto.randomUUID();
+          toast.error(jsonResponse.error.message, {
+            id: uuid,
+            action: <ButtonCloseIcon toastId={uuid} />,
+          });
+
+          console.error(jsonResponse.error?.code);
+        }
+
+        if (jsonResponse.data?.redirect) {
+          router.push('/' + jsonResponse.data.redirect);
+        }
+      } else {
+        // Sign Up
+        const response = await fetch('/api/auth/sign-up', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password,
+            confirmPassword: formData.confirmPassword,
+          }),
+        });
+
+        const jsonResponse = await response.json();
+
+        if (jsonResponse.error?.code) {
+          const uuid = crypto.randomUUID();
+          toast.error(jsonResponse.error.message, {
+            id: uuid,
+            action: <ButtonCloseIcon toastId={uuid} />,
+            duration:
+              jsonResponse.error.code === 'AuthApiError' ? 5000 : undefined,
+          });
+
+          console.error(jsonResponse.error?.code);
+        }
+
+        if (jsonResponse.data?.redirect) {
+          router.push('/' + jsonResponse.data.redirect);
+        }
+      }
     } catch (error) {
       console.error(error);
     } finally {
@@ -59,21 +128,20 @@ export default function AuthForm({ type }: { type: string }) {
   const onFormError: SubmitErrorHandler<z.infer<typeof formSchema>> = (
     error,
   ) => {
-    console.log(error);
+    console.error(error);
   };
 
   // 4. Handle OAuth
   const onOAuthSignIn = async () => {
-    const supabase = createClient();
     setIsOAuthLoading(true);
-    supabase.auth.signInWithOAuth({
-      provider: 'google',
-    })
-    
 
     try {
-      await sleep(2000);
-      // console.log(data);
+      await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/api/auth/callback`,
+        },
+      });
     } catch (error) {
       console.error(error);
     } finally {
@@ -95,9 +163,9 @@ export default function AuthForm({ type }: { type: string }) {
         </div>
         <div className='flex flex-col gap-1 md:gap-3'>
           <h1 className='text-2xl font-medium text-gray-900 dark:text-gray-100 lg:text-4xl'>
-            {type === 'sign-in' ? 'Welcome back' : 'Get started'}
+            {type === AuthType.SignIn ? 'Welcome back' : 'Get started'}
             <p className='text-base font-normal text-gray-600 dark:text-gray-400'>
-              {type === 'sign-in'
+              {type === AuthType.SignIn
                 ? 'Sign in to your account'
                 : 'Create a new account'}
             </p>
@@ -172,9 +240,9 @@ export default function AuthForm({ type }: { type: string }) {
                   <div className='flex flex-col gap-1.5'>
                     <FormLabel className='flex w-full items-center justify-between text-sm font-medium text-gray-700 dark:text-gray-300'>
                       <span>Password</span>
-                      {type === 'sign-in' && (
+                      {type === AuthType.SignIn && (
                         <Link
-                          href='/forgot-password'
+                          href={`/forgot-password?email=${userEmail}`}
                           className='hover:underline'>
                           Forgot Password?
                         </Link>
@@ -232,7 +300,7 @@ export default function AuthForm({ type }: { type: string }) {
                   <Loader2 size={20} className='animate-spin' /> &nbsp;
                   Loading...
                 </>
-              ) : type === 'sign-in' ? (
+              ) : type === AuthType.SignIn ? (
                 'Sign In'
               ) : (
                 'Sign Up'
@@ -242,12 +310,14 @@ export default function AuthForm({ type }: { type: string }) {
         </Form>
         <section className='flex justify-center gap-1'>
           <p className='text-sm font-normal text-gray-600 dark:text-gray-400'>
-            {type === 'sign-in' ? "Don't have an account?" : 'Have an account?'}
+            {type === AuthType.SignIn
+              ? "Don't have an account?"
+              : 'Have an account?'}
           </p>
           <Link
-            href={type == 'sign-in' ? '/sign-up' : '/sign-in'}
+            href={type == AuthType.SignIn ? '/sign-up' : '/sign-in'}
             className='cursor-pointer text-sm font-medium text-accent hover:underline'>
-            {type === 'sign-in' ? 'Sign Up Now' : 'Sign In Now'}
+            {type === AuthType.SignIn ? 'Sign Up Now' : 'Sign In Now'}
           </Link>
         </section>
         <footer className='mt-8 w-4/5 text-center text-xs text-gray-600 dark:text-gray-400'>

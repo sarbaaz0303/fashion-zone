@@ -1,6 +1,18 @@
 import { z } from 'zod';
 
-export const AuthFormSchema = (type: string) =>
+export enum AuthType {
+  SignIn = 'sign-in',
+  SignUp = 'sign-up',
+}
+
+export const EmailOnlySchema = z.object({
+  email: z
+    .string()
+    .min(1, { message: 'Please enter your email address.' })
+    .email({ message: 'Please enter a valid email address.' }),
+});
+
+export const AuthFormSchema = (type: AuthType) =>
   z
     .object({
       // Sign In & Sign Up
@@ -15,12 +27,12 @@ export const AuthFormSchema = (type: string) =>
 
       // Sign Up
       confirmPassword:
-        type === 'sign-in'
-          ? z.string().optional()
-          : z.string({ required_error: 'Please confirm your password.' }),
+        type === AuthType.SignUp
+          ? z.string({ required_error: 'Please confirm your password.' })
+          : z.string().optional(),
     })
     .superRefine(({ confirmPassword, password }, ctx) => {
-      if (type !== 'sign-in' && confirmPassword !== password) {
+      if (type === AuthType.SignUp && confirmPassword !== password) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           message: 'Passwords do not match.',

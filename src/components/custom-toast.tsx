@@ -6,13 +6,14 @@ import { ButtonCloseIcon } from './shared/button-close-icon';
 
 export default function CustomToast() {
   return (
-    <div className='flex justify-evenly'>
+    <div className='flex justify-evenly '>
       <Button
         onClick={() => {
           const uuid = crypto.randomUUID();
-          toast.success('This is a toast', {
+          toast.success(' This is a toast This is a toast This is a toast This is aThis is a toast This is a toast This is a toast This is a toast', {
             id: uuid,
             action: <ButtonCloseIcon toastId={uuid} />,
+            duration: 50000,
           });
         }}>
         Success Toast

@@ -18,7 +18,7 @@ export async function middleware(request: NextRequest) {
 
   const { response, user } = await updateSession(request);
 
-  //   console.log('middleware: ', user?.data?.user?.email);
+    // console.log('middleware: ', user?.data?.user?.email);
 
   //   const isSessionActive = user?.data?.user?.id;
 
