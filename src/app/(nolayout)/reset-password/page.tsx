@@ -3,24 +3,19 @@ import { ResetAuthType } from '@/lib/types';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Forgot Password',
+  title: 'Reset Password',
 };
 
-type ForgotPasswordPageType = {
+type search = {
   searchParams: {
     email: string;
   };
 };
 
-export default async function ForgotPasswordPage({
-  searchParams,
-}: ForgotPasswordPageType) {
+export default async function ForgotPasswordPage({ searchParams }: search) {
   return (
     <section className='grid min-h-screen w-full place-items-center'>
-      <ResetAuthForm
-        type={ResetAuthType.ForgotPassword}
-        email={searchParams.email}
-      />
+      <ResetAuthForm type={ResetAuthType.ResetPassword} />
     </section>
   );
 }

@@ -22,7 +22,6 @@ import { Input } from './ui/input';
 import { InputPassword } from './ui/input-password';
 import { Button } from './ui/button';
 import { ButtonCloseIcon } from './shared/button-close-icon';
-import ForgotPassword from './old';
 
 import { Loader2 } from 'lucide-react';
 import { AppData } from '@/static/app-metadata';
@@ -264,7 +263,7 @@ export default function AuthForm({ type }: { type: AuthType }) {
                 </FormItem>
               )}
             />
-            {type === 'sign-up' && (
+            {type === AuthType.SignUp && (
               <FormField
                 control={form.control}
                 name='confirmPassword'
@@ -325,8 +324,8 @@ export default function AuthForm({ type }: { type: AuthType }) {
             By continuing, you agree to {short_name}&apos;s&nbsp;
             <span className='cursor-pointer underline hover:text-accent'>
               Terms of Service
-            </span>{' '}
-            and&nbsp;
+            </span>
+            &nbsp;and&nbsp;
             <span className='cursor-pointer underline hover:text-accent'>
               Privacy Policy
             </span>

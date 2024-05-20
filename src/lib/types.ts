@@ -5,12 +5,10 @@ export enum AuthType {
   SignUp = 'sign-up',
 }
 
-export const EmailOnlySchema = z.object({
-  email: z
-    .string()
-    .min(1, { message: 'Please enter your email address.' })
-    .email({ message: 'Please enter a valid email address.' }),
-});
+export enum ResetAuthType {
+  ForgotPassword = 'forgot-password',
+  ResetPassword = 'reset-password',
+}
 
 export const AuthFormSchema = (type: AuthType) =>
   z
@@ -40,3 +38,21 @@ export const AuthFormSchema = (type: AuthType) =>
         });
       }
     });
+
+export const ResetAuthFormSchema = (type: ResetAuthType) =>
+  z.object({
+    email:
+      type === ResetAuthType.ForgotPassword
+        ? z
+            .string()
+            .min(1, { message: 'Please enter your email address.' })
+            .email({ message: 'Please enter a valid email address.' })
+        : z.string().optional(),
+    password:
+      type === ResetAuthType.ResetPassword
+        ? z
+            .string()
+            .min(1, { message: 'Please enter your password.' })
+            .min(8, { message: 'Password must be at least 8 characters.' })
+        : z.string().optional(),
+  });
