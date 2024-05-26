@@ -68,7 +68,7 @@ export async function POST(request: Request) {
 
     await supabase
       .from('users')
-      .update({ last_login: moment().format() })
+      .update({ last_sign_in_at: moment().format() })
       .eq('email', validate.data.email);
 
     const redirect = await supabase.from('users').select('is_user_onboarded');

@@ -1,3 +1,4 @@
+import OnboardingForm from '@/components/onboarding-form';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -5,5 +6,9 @@ export const metadata: Metadata = {
 };
 
 export default async function OnboardingPage() {
-  return <div>OnboardingPage</div>;
+  return (
+    <section className='flex min-h-screen flex-col items-center justify-center p-2'>
+      <OnboardingForm />
+    </section>
+  );
 }

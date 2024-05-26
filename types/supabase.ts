@@ -70,7 +70,7 @@ export type Database = {
           id: number
           is_email_verified: boolean | null
           is_user_onboarded: boolean | null
-          last_login: string | null
+          last_sign_in_at: string | null
           last_name: string | null
           password: string | null
           phone: string | null
@@ -86,7 +86,7 @@ export type Database = {
           id?: number
           is_email_verified?: boolean | null
           is_user_onboarded?: boolean | null
-          last_login?: string | null
+          last_sign_in_at?: string | null
           last_name?: string | null
           password?: string | null
           phone?: string | null
@@ -102,7 +102,7 @@ export type Database = {
           id?: number
           is_email_verified?: boolean | null
           is_user_onboarded?: boolean | null
-          last_login?: string | null
+          last_sign_in_at?: string | null
           last_name?: string | null
           password?: string | null
           phone?: string | null
