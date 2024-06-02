@@ -43,7 +43,7 @@ export default function DashboardPage() {
   }, []);
 
   return (
-    <section className='flex min-h-screen items-center justify-center'>
+    <section className='flex min-h-screen items-center justify-center min-h-[1000px]'>
       <div className='flex w-[400px] items-center justify-between'>
         <Button variant={'secondary'} asChild>
           <div>{user}</div>
