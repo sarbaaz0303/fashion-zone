@@ -25,7 +25,7 @@ import { Loader2 } from 'lucide-react';
 import { AddressInfo, CompanyInfo, PersonalInfo } from './multistep-form';
 
 export default function OnboardingForm() {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(2);
   const [isLoading, setIsLoading] = useState(false);
 
   const formSchema = OnboardingFormSchema;
@@ -35,8 +35,29 @@ export default function OnboardingForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       first_name: '',
+      last_name: '',
+      gender: '',
+      birth_date: new Date('2000-01-01'),
+      email: '',
+      phone_1: '',
+      phone_2: '',
+
+      address: '',
       city: '',
+      state: '',
+      country: '',
+      postal: '',
+
       company_name: '',
+      invoice_isolation: '',
+      invoice_id: '',
+      gst: '',
+      pan: '',
+      hsn: '',
+      discount_percentage: '',
+      tds_percentage: '',
+      cgst_percentage: '',
+      sgst_percentage: '',
     },
   });
 
@@ -61,11 +82,35 @@ export default function OnboardingForm() {
   };
 
   const onNext = async () => {
-    const schema =
-      step == 0 ? 'first_name' : step == 1 ? 'city' : 'company_name';
+    try {
+      // Select schema based on current step
+      const schema =
+        step === 0
+          ? PersonalInfoSchema
+          : step === 1
+            ? AddressInfoSchema
+            : CompanyInfoSchema;
 
-    if (await form.trigger(schema)) {
-      setStep((prev) => prev + 1);
+      // Extract form field names from schema
+      const entries: string[] = Object.entries(schema.shape).map(
+        (items) => items[0],
+      );
+
+      // Log the entries for debugging
+      console.log('Validating fields:', entries);
+
+      // Trigger validation on the form
+      // @ts-ignore
+      const isValid = await form.trigger(entries);
+
+      // If validation passes, move to the next step
+      if (isValid) {
+        setStep((prev) => prev + 1);
+      } else {
+        console.error('Validation failed for fields:', entries);
+      }
+    } catch (error) {
+      console.error('Error in onNext function:', error);
     }
   };
 
