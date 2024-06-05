@@ -1,4 +1,4 @@
-import AuthForm from '@/components/auth-form';
+import AuthForm from '@/components/auth/auth-form';
 import { AuthType } from '@/lib/types';
 import type { Metadata } from 'next';
 

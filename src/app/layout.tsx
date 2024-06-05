@@ -8,8 +8,9 @@ import { ThemeProvider } from '@/components/providers/theme-provider';
 import { DarkLightModeToggle } from '@/components/development/dark-light-mode.dev';
 import { TailwindIndicator } from '@/components/development/tailwind-indicator.dev';
 
-import { AppData } from '@/static/app-metadata';
+import { AppData } from '@/lib/static/app-metadata';
 import type { Metadata } from 'next';
+import type { Children } from '@/types';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -33,7 +34,7 @@ export default function RootLayout({ children }: Readonly<Children>) {
     <html lang='en' suppressHydrationWarning>
       <body
         className={cn(
-          'text-color min-h-screen bg-background font-sans antialiased',
+          'min-h-screen bg-background font-sans text-color antialiased',
           fontSans.variable,
         )}>
         <ThemeProvider

@@ -73,8 +73,8 @@ export async function POST(request: Request) {
       {
         data: {
           redirect: redirect.data[0].is_user_onboarded
-            ? 'dashboard'
-            : 'onboarding',
+            ? '/dashboard'
+            : '/onboarding',
         },
         error: {},
       },

@@ -1,7 +1,7 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { z } from 'zod';
@@ -17,15 +17,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from './ui/form';
-import { Input } from './ui/input';
-import { InputPassword } from './ui/input-password';
-import { Button } from './ui/button';
-import { ButtonCloseIcon } from './shared/button-close-icon';
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { InputPassword } from '@/components/ui/input-password';
+import { Button } from '@/components/ui/button';
+import { ButtonCloseIcon } from '@/components/shared/button-close-icon';
 
 import { Loader2 } from 'lucide-react';
-import { AppData } from '@/static/app-metadata';
-import { AuthFormSchema, AuthType } from '@/lib/types';
+import { AppData } from '@/lib/static/app-metadata';
+import { AuthFormSchema, AuthType } from '@/lib/zod/auth-schema';
 
 const { short_name } = AppData;
 
@@ -35,18 +35,20 @@ export default function AuthForm({ type }: { type: AuthType }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isOAuthLoading, setIsOAuthLoading] = useState(false);
 
-  const formSchema = AuthFormSchema(type);
   const supabase = createClient();
+
+  const formSchema = AuthFormSchema(type);
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: 'wonove1034@fesgrid.com',
-      password: '12345678',
+      email: '',
+      password: '',
     },
   });
 
+  // Watching email for reset-mail autofill email
   const userEmail = form.watch('email');
 
   // 2. Handle the form submission.
@@ -81,7 +83,7 @@ export default function AuthForm({ type }: { type: AuthType }) {
         }
 
         if (jsonResponse.data?.redirect) {
-          router.push('/' + jsonResponse.data.redirect);
+          router.push(jsonResponse.data.redirect);
         }
       } else {
         // Sign Up

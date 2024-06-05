@@ -18,14 +18,14 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { InputPassword } from './ui/input-password';
+import { InputPassword } from '../ui/input-password';
 import { Button } from '@/components/ui/button';
 import { createClient } from '@/lib/supabase/client';
 
 import { Loader2 } from 'lucide-react';
-import { ButtonCloseIcon } from './shared/button-close-icon';
+import { ButtonCloseIcon } from '../shared/button-close-icon';
 import { ResetAuthFormSchema, ResetAuthType } from '@/lib/types';
-import { AppData } from '@/static/app-metadata';
+import { AppData } from '@/lib/static/app-metadata';
 
 const { short_name } = AppData;
 

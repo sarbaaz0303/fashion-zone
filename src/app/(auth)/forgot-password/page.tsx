@@ -1,4 +1,4 @@
-import ResetAuthForm from '@/components/reset-auth-form';
+import ResetAuthForm from '@/components/auth/reset-auth-form';
 import { ResetAuthType } from '@/lib/types';
 import type { Metadata } from 'next';
 

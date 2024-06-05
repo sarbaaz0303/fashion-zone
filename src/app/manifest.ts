@@ -1,4 +1,4 @@
-import { AppData } from '@/static/app-metadata';
+import { AppData } from '@/lib/static/app-metadata';
 
 import type { MetadataRoute } from 'next';
 

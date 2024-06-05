@@ -1,8 +1,9 @@
-import { cookies } from 'next/headers';
-import { revalidatePath } from 'next/cache';
-import { NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase/server';
 import moment from 'moment';
+import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
+
+import { createClient } from '@/lib/supabase/server';
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
@@ -17,6 +18,9 @@ export async function GET(request: Request) {
       revalidatePath('/', 'layout');
       cookies().set('toast', 'success');
 
+      /**
+       * TODO: Update last_sign_in_at and getting is_user_onboarded can be merged 
+       */
       await supabase
         .from('users')
         .update({ last_sign_in_at: moment().format() })
@@ -33,6 +37,9 @@ export async function GET(request: Request) {
     }
   }
 
-  // return the user to an error page with instructions
+  /**
+   * return the user to an error page with instructions
+   * TODO: Add error page with instructions
+   */
   return NextResponse.redirect(`${origin}/auth/auth-code-error`);
 }
