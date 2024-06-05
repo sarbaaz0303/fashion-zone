@@ -96,7 +96,7 @@ export default function AuthForm({ type }: { type: AuthType }) {
           body: JSON.stringify({
             email: formData.email,
             password: formData.password,
-            confirmPassword: formData.confirmPassword,
+            // confirmPassword: formData.confirmPassword,
           }),
         });
 
