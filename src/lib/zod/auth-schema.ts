@@ -41,14 +41,6 @@ export const SignUpSchema = SignInSchema.extend({
   }
 });
 
-export const AuthFormSchema = (type: AuthType) =>
-  type === AuthType.SignIn ? SignInSchema : SignUpSchema;
-
-export const ResetFormSchema = (type: ResetAuthType) =>
-  type === ResetAuthType.ForgotPassword
-    ? GetPasswordResetMailSchema
-    : ResetPasswordSchema;
-
-export const GetPasswordResetMailSchema = SignInSchema.pick({ email: true });
+export const PasswordResetMailSchema = SignInSchema.pick({ email: true });
 
 export const ResetPasswordSchema = SignInSchema.pick({ password: true });

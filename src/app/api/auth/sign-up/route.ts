@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 
 import { createClient } from '@/lib/supabase/server';
-import { AuthFormSchema, AuthType } from '@/lib/types';
+import { SignUpSchema } from '@/lib/zod/auth-schema';
 
 export async function POST(request: Request) {
   try {
@@ -12,8 +12,7 @@ export async function POST(request: Request) {
     const userData = await request.json();
 
     // Validate the form data
-    const signUpSchema = AuthFormSchema(AuthType.SignUp);
-    const validate = signUpSchema.safeParse(userData);
+    const validate = SignUpSchema.safeParse(userData);
 
     if (!validate.success) {
       return NextResponse.json(
@@ -29,20 +28,18 @@ export async function POST(request: Request) {
     }
 
     // Sign up user
-    const { error } = await supabase.auth.signUp({
+    const { error: supabaseError } = await supabase.auth.signUp({
       email: validate.data.email,
       password: validate.data.password,
     });
 
-    // return NextResponse.json({ data, error });
-
-    if (error) {
-      if (error?.code === 'user_already_exists') {
+    if (supabaseError) {
+      if (supabaseError?.code === 'user_already_exists') {
         return NextResponse.json(
           {
             data: {},
             error: {
-              code: error.name,
+              code: supabaseError.name,
               message: 'Email already registered',
             },
           },
@@ -53,8 +50,8 @@ export async function POST(request: Request) {
           {
             data: {},
             error: {
-              code: error.name,
-              message: error.message,
+              code: supabaseError.name,
+              message: supabaseError.message,
             },
           },
           { status: 400 },
@@ -66,13 +63,17 @@ export async function POST(request: Request) {
     revalidatePath('/', 'layout');
     cookies().set('toast', 'success');
 
+    /**
+     * TODO: Update last_sign_in_at and getting is_user_onboarded can be merged
+     */
     await supabase
       .from('users')
       .update({ last_sign_in_at: moment().format() })
       .eq('email', validate.data.email);
 
-    const redirect = await supabase.from('users').select('is_user_onboarded');
-    if (redirect.error) {
+    const { data: userOnboardedData, error: userOnboardedError } =
+      await supabase.from('users').select('is_user_onboarded');
+    if (userOnboardedError) {
       return NextResponse.json(
         {
           data: {},
@@ -88,9 +89,9 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         data: {
-          redirect: redirect.data[0].is_user_onboarded
-            ? 'dashboard'
-            : 'onboarding',
+          redirect: userOnboardedData[0].is_user_onboarded
+            ? '/dashboard'
+            : '/onboarding',
         },
         error: {},
       },

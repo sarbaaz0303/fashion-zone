@@ -1,3 +1,5 @@
+import { Children } from '@/types';
+
 export default function LoginLayout({ children }: Readonly<Children>) {
   return (
     <main className='flex min-h-screen w-full justify-between'>
