@@ -11,13 +11,13 @@ import Loading from '../shared/loading';
 export default function OAuthLogin() {
   const [isLoading, setIsLoading] = useState(false);
 
-  const supabase = createClient();
-
   // Handle OAuth
   const onOAuthSignIn = async () => {
     setIsLoading(true);
 
     try {
+      const supabase = createClient();
+      
       await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {

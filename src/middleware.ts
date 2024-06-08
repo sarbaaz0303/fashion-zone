@@ -16,9 +16,15 @@ export const config = {
 export async function middleware(request: NextRequest) {
   const url = new URL(request.url);
 
-  const { response, user } = await updateSession(request);
+  if (url.pathname !== '/onboarding') {
+    return NextResponse.redirect(new URL('/onboarding', url.origin));
+  }
 
-    // console.log('middleware: ', user?.data?.user?.email);
+  return NextResponse.next();
+
+  // const { response, user } = await updateSession(request);
+
+  // console.log('middleware: ', user?.data?.user?.email);
 
   //   const isSessionActive = user?.data?.user?.id;
 
@@ -52,5 +58,5 @@ export async function middleware(request: NextRequest) {
   //     }
   //   }
 
-  return response;
+  // return response;
 }

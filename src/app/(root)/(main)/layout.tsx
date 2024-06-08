@@ -9,8 +9,9 @@ import {
   CollapsibleContent,
 } from '@/components/ui/collapsible';
 import { Toggle } from '@/components/ui/toggle';
+import { Children } from '@/types';
 
-export default function Component({children}) {
+export default function Component({children}: Children) {
   const [isExpanded, setIsExpanded] = useState(true);
   return (
     <>
