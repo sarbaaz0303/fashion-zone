@@ -197,7 +197,7 @@ export default function Component({children}: Children) {
   );
 }
 
-function AppWindowIcon(props) {
+function AppWindowIcon(props:any) {
   return (
     <svg
       {...props}
@@ -218,7 +218,7 @@ function AppWindowIcon(props) {
   );
 }
 
-function CalendarIcon(props) {
+function CalendarIcon(props:any) {
   return (
     <svg
       {...props}
@@ -239,7 +239,7 @@ function CalendarIcon(props) {
   );
 }
 
-function ChevronLeftIcon(props) {
+function ChevronLeftIcon(props:any) {
   return (
     <svg
       {...props}
@@ -257,7 +257,7 @@ function ChevronLeftIcon(props) {
   );
 }
 
-function ChevronRightIcon(props) {
+function ChevronRightIcon(props:any) {
   return (
     <svg
       {...props}
@@ -275,7 +275,7 @@ function ChevronRightIcon(props) {
   );
 }
 
-function CombineIcon(props) {
+function CombineIcon(props:any) {
   return (
     <svg
       {...props}
@@ -298,7 +298,7 @@ function CombineIcon(props) {
   );
 }
 
-function ContactIcon(props) {
+function ContactIcon(props:any) {
   return (
     <svg
       {...props}
@@ -320,7 +320,7 @@ function ContactIcon(props) {
   );
 }
 
-function FileIcon(props) {
+function FileIcon(props:any) {
   return (
     <svg
       {...props}
@@ -339,7 +339,7 @@ function FileIcon(props) {
   );
 }
 
-function HandHelpingIcon(props) {
+function HandHelpingIcon(props:any) {
   return (
     <svg
       {...props}
@@ -359,7 +359,7 @@ function HandHelpingIcon(props) {
   );
 }
 
-function HomeIcon(props) {
+function HomeIcon(props:any) {
   return (
     <svg
       {...props}
@@ -378,7 +378,7 @@ function HomeIcon(props) {
   );
 }
 
-function InboxIcon(props) {
+function InboxIcon(props:any) {
   return (
     <svg
       {...props}
@@ -397,7 +397,7 @@ function InboxIcon(props) {
   );
 }
 
-function KanbanIcon(props) {
+function KanbanIcon(props:any) {
   return (
     <svg
       {...props}
@@ -417,7 +417,7 @@ function KanbanIcon(props) {
   );
 }
 
-function LayoutDashboardIcon(props) {
+function LayoutDashboardIcon(props:any) {
   return (
     <svg
       {...props}
@@ -438,7 +438,7 @@ function LayoutDashboardIcon(props) {
   );
 }
 
-function LockIcon(props) {
+function LockIcon(props:any) {
   return (
     <svg
       {...props}
@@ -457,7 +457,7 @@ function LockIcon(props) {
   );
 }
 
-function LogOutIcon(props) {
+function LogOutIcon(props:any) {
   return (
     <svg
       {...props}
@@ -477,7 +477,7 @@ function LogOutIcon(props) {
   );
 }
 
-function MoonIcon(props) {
+function MoonIcon(props:any) {
   return (
     <svg
       {...props}
@@ -495,7 +495,7 @@ function MoonIcon(props) {
   );
 }
 
-function MountainIcon(props) {
+function MountainIcon(props:any) {
   return (
     <svg
       {...props}
@@ -513,7 +513,7 @@ function MountainIcon(props) {
   );
 }
 
-function ReceiptIcon(props) {
+function ReceiptIcon(props:any) {
   return (
     <svg
       {...props}
@@ -533,7 +533,7 @@ function ReceiptIcon(props) {
   );
 }
 
-function SettingsIcon(props) {
+function SettingsIcon(props:any) {
   return (
     <svg
       {...props}
@@ -552,7 +552,7 @@ function SettingsIcon(props) {
   );
 }
 
-function SignalIcon(props) {
+function SignalIcon(props:any) {
   return (
     <svg
       {...props}
@@ -574,7 +574,7 @@ function SignalIcon(props) {
   );
 }
 
-function UserIcon(props) {
+function UserIcon(props:any) {
   return (
     <svg
       {...props}

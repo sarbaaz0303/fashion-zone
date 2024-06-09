@@ -40,7 +40,7 @@ export default function DashboardPage() {
         }
       }
     })();
-  }, []);
+  }, [supabase.auth]);
 
   return (
     <section className='flex min-h-screen items-center justify-center min-h-[1000px]'>

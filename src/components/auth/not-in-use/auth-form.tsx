@@ -25,7 +25,8 @@ import { ButtonCloseIcon } from '@/components/shared/button-close-icon';
 
 import { Loader2 } from 'lucide-react';
 import { AppData } from '@/lib/static/app-metadata';
-import { AuthFormSchema, AuthType } from '@/lib/zod/auth-schema';
+import { AuthType } from '@/lib/zod/auth-schema';
+import { AuthFormSchema } from '@/lib/types';
 
 const { short_name } = AppData;
 
