@@ -1,4 +1,4 @@
-import './Calendar.css';
+import '../../assets/styles/calendar.css';
 import { Calendar as ReactCalendar } from 'react-calendar';
 
 export type CalendarProps = React.ComponentProps<typeof ReactCalendar>;

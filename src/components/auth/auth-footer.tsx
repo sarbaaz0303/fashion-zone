@@ -21,19 +21,21 @@ export default function AuthFooter({ type, name }: AuthFooterProps) {
           {type === AuthType.SignIn ? 'Sign Up Now' : 'Sign In Now'}
         </Link>
       </section>
-      <footer className='mt-8 w-4/5 text-center text-xs text-gray-600 dark:text-gray-400'>
-        <span>
-          By continuing, you agree to {name}&apos;s&nbsp;
-          <span className='cursor-pointer underline hover:text-accent'>
-            Terms of Service
+      <div className='flex items-center justify-center'>
+        <footer className='mt-8 w-4/5 text-center text-xs text-gray-600 dark:text-gray-400'>
+          <span>
+            By continuing, you agree to {name}&apos;s&nbsp;
+            <span className='cursor-pointer underline hover:text-accent'>
+              Terms of Service
+            </span>
+            &nbsp;and&nbsp;
+            <span className='cursor-pointer underline hover:text-accent'>
+              Privacy Policy
+            </span>
+            .
           </span>
-          &nbsp;and&nbsp;
-          <span className='cursor-pointer underline hover:text-accent'>
-            Privacy Policy
-          </span>
-          .
-        </span>
-      </footer>
+        </footer>
+      </div>
     </>
   );
 }

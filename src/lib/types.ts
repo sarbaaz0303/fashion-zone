@@ -103,8 +103,7 @@ export const PersonalInfoSchema = z.object({
   birth_date: z.date({ required_error: 'Birth date is required' }).refine(
     (date) => {
       const calculateAge = (date: Date) => {
-        const diff = Date.now() - date.getTime();
-        const ageDate = new Date(diff);
+        const ageDate = new Date(Date.now() - date.getTime());
         return Math.abs(ageDate.getUTCFullYear() - 1970);
       };
 

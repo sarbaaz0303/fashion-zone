@@ -101,15 +101,12 @@ export default function SignUpForm() {
           render={({ field }) => (
             <FormItem>
               <div className='flex flex-col gap-1.5'>
-                <FormLabel className='w-full max-w-[280px] text-sm font-medium text-gray-700 dark:text-gray-300'>
-                  Email
-                </FormLabel>
+                <FormLabel className='w-full max-w-[280px]'>Email</FormLabel>
                 <div className='flex w-full flex-col'>
                   <FormControl>
                     <Input
                       type='text'
                       placeholder='you@example.com'
-                      className='font-sans text-base text-gray-900 placeholder:text-base placeholder:text-gray-500 dark:text-gray-100'
                       {...field}
                     />
                   </FormControl>
@@ -126,7 +123,7 @@ export default function SignUpForm() {
           render={({ field }) => (
             <FormItem>
               <div className='flex flex-col gap-1.5'>
-                <FormLabel className='flex w-full items-center justify-between text-sm font-medium text-gray-700 dark:text-gray-300'>
+                <FormLabel className='flex w-full items-center justify-between'>
                   Password
                 </FormLabel>
                 <div className='flex w-full flex-col'>
@@ -135,7 +132,6 @@ export default function SignUpForm() {
                       type='password'
                       iconProps={{ size: 20 }}
                       placeholder='Enter your password'
-                      className='font-sans text-base text-gray-900 placeholder:text-base placeholder:text-gray-500 dark:text-gray-100'
                       {...field}
                     />
                   </FormControl>
@@ -152,7 +148,7 @@ export default function SignUpForm() {
           render={({ field }) => (
             <FormItem>
               <div className='flex flex-col gap-1.5'>
-                <FormLabel className='w-full max-w-[280px] text-sm font-medium text-gray-700 dark:text-gray-300'>
+                <FormLabel className='w-full max-w-[280px]'>
                   Confirm Password
                 </FormLabel>
                 <div className='flex w-full flex-col'>
@@ -161,7 +157,6 @@ export default function SignUpForm() {
                       type='password'
                       iconProps={{ size: 20 }}
                       placeholder='Confirm your password'
-                      className='font-sans text-base text-gray-900 placeholder:text-base placeholder:text-gray-500 dark:text-gray-100'
                       {...field}
                     />
                   </FormControl>

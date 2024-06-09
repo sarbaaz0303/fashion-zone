@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -110,7 +110,6 @@ export default function ForgotPasswordForm({ email }: ForgotPasswordFormProps) {
                     <Input
                       type='text'
                       placeholder='you@example.com'
-                      className='font-sans text-base text-gray-900 placeholder:text-base placeholder:text-gray-500 dark:text-gray-100'
                       {...field}
                     />
                   </FormControl>

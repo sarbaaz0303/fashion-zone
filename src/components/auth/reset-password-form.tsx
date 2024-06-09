@@ -104,7 +104,6 @@ export default function ResetPasswordForm() {
                       type='password'
                       iconProps={{ size: 20 }}
                       placeholder='Enter your password'
-                      className='font-sans text-base text-gray-900 placeholder:text-base placeholder:text-gray-500 dark:text-gray-100'
                       {...field}
                     />
                   </FormControl>

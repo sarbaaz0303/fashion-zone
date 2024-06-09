@@ -6,10 +6,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from './ui/form';
+} from '../../ui/form';
 import { z } from 'zod';
 import { OnboardingFormSchema } from '@/lib/types';
-import { Input } from './ui/input';
+import { Input } from '../../ui/input';
 import { format } from 'date-fns';
 import {
   Select,
@@ -17,12 +17,12 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from './ui/select';
-import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
-import { Button } from './ui/button';
+} from '../../ui/select';
+import { Popover, PopoverContent, PopoverTrigger } from '../../ui/popover';
+import { Button } from '../../ui/button';
 import { cn } from '@/lib/utils';
 import { CalendarIcon, ChevronDownIcon, Info } from 'lucide-react';
-import { Calendar } from './calendar';
+import { Calendar } from '../../shared/calendar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,16 +30,16 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from './ui/dropdown-menu';
-import { Label } from './ui/label';
-import { PhoneInput } from './phone-input';
-import { Textarea } from './ui/textarea';
+} from '../../ui/dropdown-menu';
+import { Label } from '../../ui/label';
+import { PhoneInput } from '../../phone-input';
+import { Textarea } from '../../ui/textarea';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from './ui/tooltip';
+} from '../../ui/tooltip';
 
 export function PersonalInfo({
   form,

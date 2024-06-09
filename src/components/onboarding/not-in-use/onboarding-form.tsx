@@ -18,9 +18,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from './ui/card';
-import { Button } from './ui/button';
-import { Form } from './ui/form';
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Form } from '@/components/ui/form';
 import { Loader2 } from 'lucide-react';
 import { AddressInfo, CompanyInfo, PersonalInfo } from './multistep-form';
 
