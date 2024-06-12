@@ -53,6 +53,10 @@ export const PersonalInformationSchema = z.object({
 
 export const AddressInformationSchema = z.object({
   address: z.string().trim().min(1, { message: 'Address is required' }),
+  city: z.string().trim().min(1, {message: 'City is required'}),
+  state: z.string().trim().min(1, {message: 'State is required'}),
+  country: z.string().trim().min(1, {message: 'Country is required'}),
+  postalCode: z.string().trim().min(1, {message: 'Postal code is required'})
 });
 
 export const CompanyInformationSchema = z.object({

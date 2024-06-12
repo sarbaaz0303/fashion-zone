@@ -196,6 +196,8 @@ export default function PersonalInformation({
         />
       </div>
       <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
+
+        {/* Phone Number 1 */}
         <FormField
           name='phone1'
           control={form.control}
@@ -219,6 +221,8 @@ export default function PersonalInformation({
             </FormItem>
           )}
         />
+
+        {/* Phone Number 2 */}
         <FormField
           name='phone2'
           control={form.control}

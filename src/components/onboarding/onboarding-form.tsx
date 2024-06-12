@@ -31,7 +31,7 @@ import {
 import { onboardingData } from '@/lib/static/main-data';
 
 export default function OnboardingForm() {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
   const [stepData, setStepData] = useState(onboardingData);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -52,6 +52,10 @@ export default function OnboardingForm() {
 
       // Address Information Schema
       address: '',
+      city: '',
+      state: '',
+      country: '',
+      postalCode: '',
 
       // Company Information Schema
       companyName: '',
