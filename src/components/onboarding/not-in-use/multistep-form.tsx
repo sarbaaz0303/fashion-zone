@@ -32,7 +32,7 @@ import {
   DropdownMenuTrigger,
 } from '../../ui/dropdown-menu';
 import { Label } from '../../ui/label';
-import { PhoneInput } from '../../phone-input';
+import { PhoneInput } from '../../ui/not-in-use/phone-input';
 import { Textarea } from '../../ui/textarea';
 import {
   Tooltip,
@@ -421,7 +421,7 @@ export function CompanyInfo({
           render={({ field }) => (
             <FormItem>
               <div className='flex flex-col gap-1.5'>
-                <FormLabel className='w-full max-w-[280px] text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center space-x-2'>
+                <FormLabel className='flex w-full max-w-[280px] items-center space-x-2 text-sm font-medium text-gray-700 dark:text-gray-300'>
                   <p>Invoice Isolation</p>
                   <TooltipProvider>
                     <Tooltip>

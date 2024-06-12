@@ -1,6 +1,8 @@
 import { z } from 'zod';
 import { UseFormReturn } from 'react-hook-form';
 import { OnboardingFormSchema } from '@/lib/zod/onboarding-schema';
+import { format } from 'date-fns';
+
 import {
   FormControl,
   FormField,
@@ -9,12 +11,8 @@ import {
   FormMessage,
 } from '../ui/form';
 import { Input } from '../ui/input';
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
-import { cn, getCalendarDate } from '@/lib/utils';
 import { Button } from '../ui/button';
-import { format } from 'date-fns';
-import { CalendarIcon } from 'lucide-react';
-import { Calendar } from '../shared/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import {
   Select,
   SelectContent,
@@ -22,6 +20,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/select';
+
+import { Calendar } from '../shared/calendar';
+import PhoneInput from '../shared/phone-input';
+
+import { cn } from '@/lib/utils';
+import { CalendarIcon } from 'lucide-react';
 
 type PersonalInformationProps = {
   form: UseFormReturn<z.infer<typeof OnboardingFormSchema>>;
@@ -202,6 +206,36 @@ export default function PersonalInformation({
                   Mobile Number 1
                 </FormLabel>
                 <div className='flex w-full flex-col'>
+                  <FormControl>
+                    <PhoneInput
+                      placeholder='Enter a phone number'
+                      defaultCountry='IN'
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage className='mt-2 text-xs text-red-500' />
+                </div>
+              </div>
+            </FormItem>
+          )}
+        />
+        <FormField
+          name='phone2'
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <div className='flex flex-col gap-1.5'>
+                <FormLabel className='w-full max-w-[280px]'>
+                  Mobile Number 2
+                </FormLabel>
+                <div className='flex w-full flex-col'>
+                  <FormControl>
+                    <PhoneInput
+                      placeholder='Enter a phone number'
+                      defaultCountry='IN'
+                      {...field}
+                    />
+                  </FormControl>
                   <FormMessage className='mt-2 text-xs text-red-500' />
                 </div>
               </div>
