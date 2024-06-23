@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
-import ResetAuthHeader from '@/components/auth/reset-auth-header';
-import ForgotPasswordForm from '@/components/auth/forgot-password-form';
+import ResetAuthHeader from '@/components/auth-reset/reset-auth-header';
+import ForgotPasswordForm from '@/components/auth-reset/forgot-password-form';
 
 import { AppData } from '@/lib/static/app-metadata';
 import { ResetAuthType } from '@/lib/zod/auth-schema';

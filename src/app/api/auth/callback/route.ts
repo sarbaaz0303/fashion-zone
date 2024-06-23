@@ -19,18 +19,21 @@ export async function GET(request: Request) {
       cookies().set('toast', 'success');
 
       /**
-       * TODO: Update last_sign_in_at and getting is_user_onboarded can be merged 
+       * TODO: Update last_sign_in_at and getting is_user_onboarded can be merged
        */
       await supabase
         .from('users')
         .update({ last_sign_in_at: moment().format() })
         .eq('email', data.user.email);
 
-      const redirect = await supabase.from('users').select('is_user_onboarded');
+      const redirect = await supabase
+        .from('users')
+        .select('is_user_onboarded')
+        .single();
       if (!redirect.error) {
         return NextResponse.redirect(
           `${origin}${
-            !redirect.data[0].is_user_onboarded ? '/dashboard' : '/onboarding'
+            redirect.data?.is_user_onboarded ? '/dashboard' : '/onboarding'
           }`,
         );
       }

@@ -34,3 +34,21 @@ export function getIcon(name: string | undefined) {
       return Lock;
   }
 }
+
+export function extractPhoneParts(phoneNumber: string | undefined) {
+  const pattern = /^(?:(\+\d{1,3})\s?)?(\d{10})$/;
+
+  if (!phoneNumber) {
+    return { countryCode: '', mainNumber: '' };
+  }
+
+  const match = phoneNumber.match(pattern);
+
+  if (match) {
+    const countryCode = match[1] ? match[1] : '';
+    const mainNumber = match[2];
+    return { countryCode, mainNumber };
+  } else {
+    return { countryCode: '', mainNumber: phoneNumber };
+  }
+}

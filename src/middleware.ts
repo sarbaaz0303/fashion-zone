@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { updateSession } from '@/lib/supabase/middleware';
+import { createClient } from './lib/supabase/server';
 
 export const config = {
   matcher: [
@@ -16,17 +17,29 @@ export const config = {
 export async function middleware(request: NextRequest) {
   const url = new URL(request.url);
 
-  if (url.pathname !== '/onboarding') {
-    return NextResponse.redirect(new URL('/onboarding', url.origin));
-  }
-
   return NextResponse.next();
 
   // const { response, user } = await updateSession(request);
 
   // console.log('middleware: ', user?.data?.user?.email);
+  // console.log(user);
 
-  //   const isSessionActive = user?.data?.user?.id;
+  // const isSessionActive = user?.data?.user?.id;
+
+  // if (isSessionActive) {
+  //   if (url.pathname === '/onboarding') {
+  //     const supabase = createClient();
+  //     const { data: supabaseUserData, error: supabaseError } = await supabase
+  //       .from('users')
+  //       .select('is_user_onboarded')
+  //       .eq('email', user?.data?.user?.email)
+  //       .single();
+
+  //     if (supabaseUserData?.is_user_onboarded) {
+  //       return NextResponse.redirect(new URL('/dashboard', url.origin));
+  //     }
+  //   }
+  // }
 
   //   const loginRoute = ['/signin', '/signup'];
 

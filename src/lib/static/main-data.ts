@@ -4,11 +4,22 @@ export const onboardingData = [
     status: '',
   },
   {
-    name: 'Address',
+    name: 'Company',
     status: '',
   },
   {
-    name: 'Company',
+    name: 'Company Address',
+    status: '',
+  },
+];
+
+export const clientData = [
+  {
+    name: 'Basic',
+    status: '',
+  },
+  {
+    name: 'Address',
     status: '',
   },
 ];

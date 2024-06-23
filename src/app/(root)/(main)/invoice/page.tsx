@@ -1,4 +1,4 @@
-import CustomToast from '@/components/custom-toast';
+import InvoiceHeader from '@/components/invoice/header';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -7,8 +7,8 @@ export const metadata: Metadata = {
 
 export default async function InvoicePage() {
   return (
-    <div>
-      <CustomToast />
-    </div>
+    <section>
+      <InvoiceHeader />
+    </section>
   );
 }

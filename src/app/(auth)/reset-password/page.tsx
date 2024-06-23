@@ -1,5 +1,5 @@
-import ResetAuthHeader from '@/components/auth/reset-auth-header';
-import ResetPasswordForm from '@/components/auth/reset-password-form';
+import ResetAuthHeader from '@/components/auth-reset/reset-auth-header';
+import ResetPasswordForm from '@/components/auth-reset/reset-password-form';
 
 import { AppData } from '@/lib/static/app-metadata';
 import { ResetAuthType } from '@/lib/zod/auth-schema';

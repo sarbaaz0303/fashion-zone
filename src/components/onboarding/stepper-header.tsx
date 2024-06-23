@@ -29,7 +29,9 @@ export default function StepperHeader({ steps }: StepperHeaderProps) {
                   )}
                 </span>
                 {step.name}
-                <span className='hidden sm:ms-2 sm:inline-flex'>Info</span>
+                {index !== steps.length - 1 && (
+                  <span className='hidden sm:ms-2 sm:inline-flex'>Info</span>
+                )}
               </span>
             </li>
             {/* Horizontal Divider */}

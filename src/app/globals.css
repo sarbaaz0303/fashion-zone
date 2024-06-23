@@ -82,25 +82,42 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
-}
 
-/* Custom Scrollbar */
+  input::-ms-reveal,
+  input::-ms-clear {
+    display: none;
+  }
+
+  input[type='password'] {
+    letter-spacing: 1px;
+  }
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
 
 /* Utility */
 .flex-center {
   @apply flex items-center justify-center;
 }
 
-input::-ms-reveal,
-input::-ms-clear {
-  display: none;
+.bg-color {
+  @apply bg-white dark:bg-background dark:brightness-110;
 }
 
-input[type='password'] {
-  letter-spacing: 1px;
+.sidebar-link {
+  @apply text-gray-500 hover:text-gray-900 dark:text-gray-400  dark:hover:text-gray-50;
+}
+
+.text-subtitle {
+  @apply text-gray-500  dark:text-gray-400;
 }
 
 .no-select {

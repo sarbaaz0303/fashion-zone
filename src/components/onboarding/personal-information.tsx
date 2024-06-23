@@ -29,10 +29,12 @@ import { CalendarIcon } from 'lucide-react';
 
 type PersonalInformationProps = {
   form: UseFormReturn<z.infer<typeof OnboardingFormSchema>>;
+  disableEmail: boolean;
 };
 
 export default function PersonalInformation({
   form,
+  disableEmail,
 }: PersonalInformationProps) {
   return (
     <div className='grid gap-4'>
@@ -185,6 +187,7 @@ export default function PersonalInformation({
                     <Input
                       type='text'
                       placeholder='you@example.com'
+                      disabled={disableEmail}
                       {...field}
                     />
                   </FormControl>
@@ -196,7 +199,6 @@ export default function PersonalInformation({
         />
       </div>
       <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
-
         {/* Phone Number 1 */}
         <FormField
           name='phone1'

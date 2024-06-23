@@ -5,8 +5,8 @@ import { Poppins as FontSans } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/sonner';
 import { ThemeProvider } from '@/components/providers/theme-provider';
-import { DarkLightModeToggle } from '@/components/development/dark-light-mode.dev';
-import { TailwindIndicator } from '@/components/development/tailwind-indicator.dev';
+import { DarkLightModeToggle } from '@/components/dev/dark-light-mode.dev';
+import { TailwindIndicator } from '@/components/dev/tailwind-indicator.dev';
 
 import { AppData } from '@/lib/static/app-metadata';
 import type { Metadata } from 'next';
@@ -43,8 +43,8 @@ export default function RootLayout({ children }: Readonly<Children>) {
           enableSystem
           disableTransitionOnChange>
           {children}
-          <TailwindIndicator />
-          <DarkLightModeToggle />
+          {/* <TailwindIndicator /> */}
+          {/* <DarkLightModeToggle /> */}
           <Toaster position='top-right' />
         </ThemeProvider>
       </body>
