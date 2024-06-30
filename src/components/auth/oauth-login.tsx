@@ -17,7 +17,7 @@ export default function OAuthLogin() {
 
     try {
       const supabase = createClient();
-      
+
       await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {

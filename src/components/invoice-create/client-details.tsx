@@ -9,7 +9,6 @@ export default function ClientDetails() {
           Customer Details
         </span>
       </div>
-      
     </section>
   );
 }

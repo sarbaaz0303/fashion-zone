@@ -57,7 +57,8 @@ export async function POST(request: Request) {
       .update({ last_sign_in_at: moment().format() })
       .eq('email', validate.data.email);
 
-    const {data: userOnboardedData, error: userOnboardedError} = await supabase.from('users').select('is_user_onboarded');
+    const { data: userOnboardedData, error: userOnboardedError } =
+      await supabase.from('users').select('is_user_onboarded');
     if (userOnboardedError) {
       return NextResponse.json(
         {

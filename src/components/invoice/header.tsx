@@ -6,7 +6,7 @@ import { PlusIcon } from 'lucide-react';
 export default function InvoiceHeader() {
   return (
     <Card className='m-4'>
-      <CardHeader className='flex-row justify-between items-center p-4'>
+      <CardHeader className='flex-row items-center justify-between p-4'>
         <CardTitle>Invoices</CardTitle>
         <Button asChild>
           <Link href='/invoice/create' className='gap-2'>

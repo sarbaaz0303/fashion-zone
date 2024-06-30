@@ -39,7 +39,7 @@ export default function LayoutHeader({}: LayoutHeaderProps) {
   return (
     <header className='flex h-16 items-center justify-center gap-4 border-b bg-color px-4 sm:px-8 md:gap-6'>
       <Sheet>
-        <SheetTrigger>
+        <SheetTrigger asChild>
           <Button
             className='relative block px-2 sm:hidden'
             variant='outline'

@@ -10,11 +10,14 @@ export default function CustomToast() {
       <Button
         onClick={() => {
           const uuid = crypto.randomUUID();
-          toast.success(' This is a toast This is a toast This is a toast This is aThis is a toast This is a toast This is a toast This is a toast', {
-            id: uuid,
-            action: <ButtonCloseIcon toastId={uuid} />,
-            duration: 50000,
-          });
+          toast.success(
+            ' This is a toast This is a toast This is a toast This is aThis is a toast This is a toast This is a toast This is a toast',
+            {
+              id: uuid,
+              action: <ButtonCloseIcon toastId={uuid} />,
+              duration: 50000,
+            },
+          );
         }}>
         Success Toast
       </Button>
