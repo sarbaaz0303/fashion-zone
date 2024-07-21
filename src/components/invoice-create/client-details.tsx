@@ -1,6 +1,12 @@
+import { Client } from '@/types';
 import { User2Icon } from 'lucide-react';
+import { Input } from '../ui/input';
 
-export default function ClientDetails() {
+type ClientDetailsProps = {
+  data: Client[];
+};
+
+export default function ClientDetails({ data }: ClientDetailsProps) {
   return (
     <section className='mt-8'>
       <div className='flex items-end gap-2'>
@@ -8,6 +14,9 @@ export default function ClientDetails() {
         <span className='text-base font-medium leading-none'>
           Customer Details
         </span>
+      </div>
+      <div>
+        
       </div>
     </section>
   );

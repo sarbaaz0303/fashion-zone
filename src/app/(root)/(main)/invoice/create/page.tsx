@@ -2,6 +2,7 @@ import ClientDetails from '@/components/invoice-create/client-details';
 import ProductDetails from '@/components/invoice-create/product-detials';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { clients } from '@/database/dummy-data';
 import { ArrowLeftIcon } from 'lucide-react';
 import Link from 'next/link';
 
@@ -18,7 +19,7 @@ export default function InvoiceCreatePage() {
         <CardTitle>Create Invoice</CardTitle>
       </CardHeader>
       <CardContent>
-        <ClientDetails />
+        <ClientDetails data={clients} />
         <ProductDetails />
       </CardContent>
     </Card>

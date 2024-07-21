@@ -43,7 +43,7 @@ export default function RootLayout({ children }: Readonly<Children>) {
           enableSystem
           disableTransitionOnChange>
           {children}
-          {/* <TailwindIndicator /> */}
+          <TailwindIndicator />
           {/* <DarkLightModeToggle /> */}
           <Toaster position='top-right' />
         </ThemeProvider>

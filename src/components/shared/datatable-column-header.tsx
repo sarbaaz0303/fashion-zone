@@ -9,12 +9,12 @@ import { Column } from '@tanstack/react-table';
 import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '../ui/dropdown-menu';
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuSeparator,
+  ContextMenuTrigger,
+} from '../ui/context-menu';
 
 interface DataTableColumnHeaderProps<TData, TValue>
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -33,13 +33,13 @@ export function DataTableColumnHeader<TData, TValue>({
 
   return (
     <div className={cn('flex items-center space-x-2', className)}>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+      <ContextMenu>
+        <ContextMenuTrigger asChild>
           <Button
             variant='ghost'
-            size='sm'
-            className='-ml-3 h-8 data-[state=open]:bg-accent'>
-            <span>{title}</span>
+            className='hover:bg-secondary'
+            onClick={() => column.toggleSorting()}>
+            {title}
             {column.getIsSorted() === 'desc' ? (
               <ArrowDownIcon className='ml-2 h-4 w-4' />
             ) : column.getIsSorted() === 'asc' ? (
@@ -48,23 +48,42 @@ export function DataTableColumnHeader<TData, TValue>({
               <ChevronsUpDownIcon className='ml-2 h-4 w-4' />
             )}
           </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align='start'>
-          <DropdownMenuItem onClick={() => column.toggleSorting(false)}>
-            <ArrowUpIcon className='mr-2 h-3.5 w-3.5 text-muted-foreground/70' />
-            Asc
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => column.toggleSorting(true)}>
-            <ArrowDownIcon className='mr-2 h-3.5 w-3.5 text-muted-foreground/70' />
-            Desc
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => column.toggleVisibility(false)}>
-            <EyeOffIcon className='mr-2 h-3.5 w-3.5 text-muted-foreground/70' />
-            Hide
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+        </ContextMenuTrigger>
+        <ContextMenuContent className='[&>div]:p-0'>
+          <ContextMenuItem className='pb-1'>
+            <Button
+              variant='ghost'
+              className='h-6 w-full justify-start py-0 font-normal hover:bg-secondary'
+              onClick={() => column.toggleSorting(false)}>
+              <ArrowUpIcon className='mr-2 h-3.5 w-3.5 text-muted-foreground/70' />
+              Asc
+            </Button>
+          </ContextMenuItem>
+          <ContextMenuItem className='pb-1'>
+            <Button
+              variant='ghost'
+              className='h-6 w-full justify-start py-0 font-normal hover:bg-secondary'
+              onClick={() => column.toggleSorting(true)}>
+              <ArrowDownIcon className='mr-2 h-3.5 w-3.5 text-muted-foreground/70' />
+              Desc
+            </Button>
+          </ContextMenuItem>
+          {typeof column.accessorFn !== 'undefined' && column.getCanHide() && (
+            <>
+              <ContextMenuSeparator />
+              <ContextMenuItem className='pb-1'>
+                <Button
+                  variant='ghost'
+                  className='h-6 w-full justify-start py-0 font-normal hover:bg-secondary'
+                  onClick={() => column.toggleVisibility(false)}>
+                  <EyeOffIcon className='mr-2 h-3.5 w-3.5 text-muted-foreground/70' />
+                  Hide
+                </Button>
+              </ContextMenuItem>
+            </>
+          )}
+        </ContextMenuContent>
+      </ContextMenu>
     </div>
   );
 }
